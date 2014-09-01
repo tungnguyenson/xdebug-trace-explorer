@@ -121,7 +121,7 @@ function generateTree(&$node) {
     // parse params
     $params = '';
     if ($node['paramCount']>0) {
-        $maxLen = 50;
+        $maxLen = 80;
         $pArray = [];
         foreach ($node['params'] as $pItem) {
             $pArray[] = strlen($pItem) > $maxLen?substr($pItem, 0, $maxLen).'...':$pItem;
@@ -137,7 +137,7 @@ function generateTree(&$node) {
     $timeCost = isset($node['timeCost'])?number_format($node['timeCost'],5).'s':'';
     // render
     echo "<li><div class='fn-line'>".$expandButton.
-        "<span class='fn-id'>#{$node['functionId']}</span> $timeCost: <span
+        "<span class='fn-id'>#{$node['functionId']}</span> <span class='fn-time'>$timeCost</span><span
         class='fn-file'>$filePath [line {$node['lineNumber']}]</span>:
         <span class='fn-name'>{$node['functionName']}(<span class='fn-params'>$params</span>)</span></div>";
     if ($hasChildren) {
@@ -153,12 +153,14 @@ function generateTree(&$node) {
 ?>
 <style type="text/css">
     .hidden {display:none}
+    .fn-tree {padding-left:60px;padding-right:80px}
     .fn-tree li {list-style: none}
-    .fn-sub {padding-left: 20px;position: relative}
-    .fn-id {font-weight:bold}
+    .fn-sub {padding-left: 20px}
+    .fn-id {font-weight:bold;position: absolute;left:0;width:50px;text-align: right}
+    .fn-time {position:absolute;right:0}
     .fn-file {color:#666}
     .fn-name {font-weight:bold;color:blue}
-    .fn-line {cursor:hand;cursor:pointer}
+    .fn-line {cursor:hand;cursor:pointer;}
     .fn-line:hover {background:lightcyan}
     .fn-params {font-weight:normal;color:#666}
 </style>
