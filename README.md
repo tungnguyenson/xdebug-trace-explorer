@@ -16,4 +16,6 @@ View XDebug Trace file .xt in treeview
     xdebug.trace_output_dir = /var/log/xdebug/trace
     xdebug.collect_params = 3
 
-File path is hardcoded at this time
+# How to use
+
+Run `xdebug-trace-explorer` in your browser
