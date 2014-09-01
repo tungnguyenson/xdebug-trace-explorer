@@ -8,7 +8,7 @@
  *      memory: bytes
  *      functionType: 0=user-defined, 1=internal
  */
-$file = '/var/log/xdebug/trace/trace.2043925204.xt';
+$file = 'trace.sample.xt';
 
 function testParse($file) {
     $handle = fopen($file, 'r');
@@ -136,10 +136,10 @@ function generateTree(&$node) {
 
     $timeCost = isset($node['timeCost'])?number_format($node['timeCost'],5).'s':'';
     // render
-    echo "<li class='fn-line'>".$expandButton.
+    echo "<li><div class='fn-line'>".$expandButton.
         "<span class='fn-id'>#{$node['functionId']}</span> $timeCost: <span
         class='fn-file'>$filePath [line {$node['lineNumber']}]</span>:
-        <span class='fn-name'>{$node['functionName']}(<span class='fn-params'>$params</span>)</span>";
+        <span class='fn-name'>{$node['functionName']}(<span class='fn-params'>$params</span>)</span></div>";
     if ($hasChildren) {
         echo "<ul class='fn-sub hidden' id='sub-fn-{$node['functionId']}'>";
         foreach ($node['children'] as &$item) {
@@ -158,8 +158,8 @@ function generateTree(&$node) {
     .fn-id {font-weight:bold}
     .fn-file {color:#666}
     .fn-name {font-weight:bold;color:blue}
-    .fn-expand {cursor:hand;cursor:pointer}
-    .fn-line:hover {}
+    .fn-line {cursor:hand;cursor:pointer}
+    .fn-line:hover {background:lightcyan}
     .fn-params {font-weight:normal;color:#666}
 </style>
 
@@ -174,9 +174,8 @@ echo '</ul>';
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('.fn-expand').click(function(){
-            //var $expand = $(this).find('> .fn-expand');
-            var $expand = $(this);
+        $('.fn-line').click(function(){
+            var $expand = $(this).find('> .fn-expand');
             var fnId = $expand.attr('id');
             $('#sub-'+fnId).toggleClass('hidden');
             $expand.html($('#sub-'+fnId).hasClass('hidden')?'[+] ':'[-] ');
