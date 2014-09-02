@@ -6,5 +6,6 @@
     + [Done] Columns style
     + Auto expand root node
     + Error handling
-  + Read files from Xdebug.trace_output_dir
-    + Big files - filter
+  + [Done] Read files from Xdebug.trace_output_dir
+  + Big files 
+    + filter

@@ -134,6 +134,9 @@ class XtExplorer {
         $this->_generateTree($this->data[0]);
     }
 
+    /**
+     * Generate HTML node (ul>li style) recursively
+     */
     private function _generateTree(&$node) {
         $hasChildren = count($node['children'])>0;
         $expandButton = $hasChildren?'<span class="fn-expand" id="fn-'.$node['functionId'].'">[+] </span>':'----';
@@ -150,6 +153,8 @@ class XtExplorer {
         }
         if ($params=='' && $node['includeFile']!='')
             $params = $node['includeFile'];
+
+        $params = htmlentities($params);
 
         $filePath = $node['filePath'];
         if ($this->filterPrefix)

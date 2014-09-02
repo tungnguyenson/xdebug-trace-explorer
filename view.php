@@ -12,7 +12,7 @@
         .fn-time {position:absolute;right:0}
         .fn-file {color:#666}
         .fn-name {font-weight:bold;color:blue}
-        .fn-line {cursor:hand;cursor:pointer;}
+        .fn-line {cursor:hand;cursor:pointer;margin:8px 0}
         .fn-line:hover {background:lightcyan}
         .fn-params {font-weight:normal;color:#666}
     </style>
@@ -24,31 +24,47 @@
     more
 information</p>
 
-<form>
-    Trace file path (*.xt): <input type="text" name="filePath" style="width:400px" value="<?php if(isset($traceFile))
+<form id="frm">
+    Trace file path (*.xt):<br/>
+    <input type="text" id="filePath" name="filePath" style="width:400px" value="<?php if(isset
+    ($traceFile))
         echo
     $traceFile?>"/> <input type="submit" value="Render"/>
 </form>
-<br />
-<hr />
+<?php if (count($traceFiles)>0):?>
+    <p>or pick from lists we found at <?php echo $traceFolder?>:<br/>
+    <select id="xt-select">
+        <?php foreach ($traceFiles as $f):?>
+            <option value="<?php echo "$traceFolder/$f"?>"><?php echo $f?></option>
+        <?php endforeach?>
+    </select>
+    </p>
+<?php endif;?>
 
-<?php
 
-?>
-<ul class="fn-tree">
-<?php $traceExplorer->render()?>
-</ul>
+<?php if ($traceFile != ''):?>
+    <hr />
+    <ul class="fn-tree">
+    <?php $traceExplorer->render()?>
+    </ul>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('.fn-line').click(function(){
-            var $expand = $(this).find('> .fn-expand');
-            var fnId = $expand.attr('id');
-            $('#sub-'+fnId).toggleClass('hidden');
-            $expand.html($('#sub-'+fnId).hasClass('hidden')?'[+] ':'[-] ');
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.fn-line').click(function(){
+                var $expand = $(this).find('> .fn-expand');
+                var fnId = $expand.attr('id');
+                $('#sub-'+fnId).toggleClass('hidden');
+                $expand.html($('#sub-'+fnId).hasClass('hidden')?'[+] ':'[-] ');
+            });
+
+            $('#xt-select').change(function() {
+                $('#filePath').val($('#xt-select').val());
+                $('#frm').submit();
+            });
         });
-    });
-</script>
+    </script>
+<?php endif;?>
+
 </body>
 </html>
