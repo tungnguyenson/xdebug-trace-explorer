@@ -1,4 +1,7 @@
 <?php
+
+ini_set('memory_limit', '2048M');
+
 include 'XtExplorer.php';
 
 // scan xdebug trace output dir for files
