@@ -35,8 +35,7 @@ information</p>
     <p>or pick from lists we found at <?php echo $traceFolder?>:<br/>
     <select id="xt-select">
         <?php foreach ($traceFiles as $f):?>
-            <option value="<?php echo "$traceFolder/$f"?>"><?php echo $f?></option>
-        <?php endforeach?>
+            <option value="<?php echo "$traceFolder/$f"?>"<?php if ($traceFile == "$traceFolder/$f") echo 'selected'?>><?php echo $f?></option>        <?php endforeach?>
     </select>
     </p>
 <?php endif;?>
