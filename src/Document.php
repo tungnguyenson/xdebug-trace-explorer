@@ -1,11 +1,11 @@
 <?php
 
-namespace vuzonp\XTracer;
+namespace Vuzonp\XTrace;
 
 /**
  * Represents a xdebug trace file.
  */
-class TraceDocument extends \SplFileInfo {
+class Document extends \SplFileInfo {
 
     /** Character used for separating columns in file. */
     protected $delimiter = "\t";
@@ -30,7 +30,7 @@ class TraceDocument extends \SplFileInfo {
 
     /**
      * Root node of the document.
-     * @var null | \vuzonp\XTracer\Trace
+     * @var null | \Vuzonp\XTrace\Trace
      */
     private $root;
 
@@ -54,7 +54,7 @@ class TraceDocument extends \SplFileInfo {
      * Parses the document and orders the traces in a tree.
      * @throws \LogicException While the document is invalid.
      * @uses self::addNewTrace For create new node.
-     * @uses \vuzonp\XTracer\Trace Represents each node of the tree.
+     * @uses \Vuzonp\XTrace\Trace Represents each node of the tree.
      */
     protected function parse()
     {
@@ -119,7 +119,7 @@ class TraceDocument extends \SplFileInfo {
     /**
      * Adds attributes to a trace from csv.
      * 
-     * @param \vuzonp\XTracer\Trace $trace The trace object to handle.
+     * @param \Vuzonp\XTrace\Trace $trace The trace object to handle.
      * @param array $csv The raw trace stored in an array
      */
     private function setParamsToTrace(Trace $trace, array $csv)
@@ -137,8 +137,8 @@ class TraceDocument extends \SplFileInfo {
     /**
      * Attaches a new trace node by linking it to a previous trace node.
      *
-     * @param \vuzonp\XTracer\Trace $newTrace New trace to append.
-     * @param \vuzonp\XTracer\Trace $prevTrace Previous trace node.
+     * @param \Vuzonp\XTrace\Trace $newTrace New trace to append.
+     * @param \Vuzonp\XTrace\Trace $prevTrace Previous trace node.
      */
     protected function attachNewTrace(Trace $newTrace, Trace $prevTrace)
     {
@@ -161,7 +161,7 @@ class TraceDocument extends \SplFileInfo {
      * Returns the main trace of the document.
      * 
      * @uses self::parse
-     * @return \vuzonp\XTracer\Trace The main trace.
+     * @return \Vuzonp\XTrace\Trace The main trace.
      */
     public function getRoot()
     {

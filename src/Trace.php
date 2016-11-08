@@ -1,6 +1,6 @@
 <?php
 
-namespace vuzonp\XTracer;
+namespace Vuzonp\XTrace;
 
 /**
  * Represents the trace of a function
@@ -98,13 +98,13 @@ class Trace
 
     /**
      * Children traces of this one.
-     * @var \vuzonp\XTracer\TraceList
+     * @var \Vuzonp\XTrace\TraceList
      */
     protected $children;
 
     /**
      * Parent trace of this one.
-     * @var \vuzonp\XTracer\Trace
+     * @var \Vuzonp\XTrace\Trace
      */
     protected $parent;
 
@@ -113,7 +113,7 @@ class Trace
      * Converts an array to a trace object.
      *
      * @param array $csv The array to convert.
-     * @return \vuzonp\XTracer\Trace
+     * @return \Vuzonp\XTrace\Trace
      */
     public static function fromArray(array $csv, array $offsets = null)
     {
@@ -228,7 +228,7 @@ class Trace
 
     /**
      * Attaches a child to the trace.
-     * @param \vuzonp\XTracer\Trace $child
+     * @param \Vuzonp\XTrace\Trace $child
      * @throws \DomainException When the child's level is not correct.
      */
     public function appendChild(Trace $child)
@@ -250,7 +250,7 @@ class Trace
 
     /**
      * Specifies the parent of the trace.
-     * @param \vuzonp\XTracer\Trace $parent
+     * @param \Vuzonp\XTrace\Trace $parent
      * @throws \LogicException When the trace has already a parent.
      */
     final protected function setParent(Trace $parent)
@@ -271,7 +271,7 @@ class Trace
     /**
      * Indicates if two traces are the same trace
      * (but not necessary the same object).
-     * @param \vuzonp\XTracer\Trace $trace
+     * @param \Vuzonp\XTrace\Trace $trace
      * @return boolean
      */
     public function isSameTrace(Trace $trace)

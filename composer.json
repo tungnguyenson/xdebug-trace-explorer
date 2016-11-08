@@ -1,0 +1,20 @@
+{
+    "name": "vuzonp/xtrace",
+    "description": "Parse library of the Xdebug trace files.",
+    "keywords": ["xdebug", "trace", "xt", "parser"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "vuzonp",
+            "email": "geek@thomasgirard.fr",
+            "homepage": "http://www.thomasgirard.fr"
+        },
+        {
+            "name": "Tung Nguyen",
+            "homepage": "https://github.com/tungnguyenson/"
+        }
+    ],
+    "require": {
+        "php": ">=5.3"
+    }
+}

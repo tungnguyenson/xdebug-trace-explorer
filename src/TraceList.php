@@ -1,6 +1,6 @@
 <?php
 
-namespace vuzonp\XTracer;
+namespace Vuzonp\XTrace;
 
 /**
  * Collection of traces.
@@ -20,8 +20,8 @@ class TraceList implements \Iterator, \Countable
 
     /**
      * Adds new trace to the collection.
-     * @param \vuzonp\XTracer\Trace $trace
-     * @return \vuzonp\XTracer\Trace
+     * @param \Vuzonp\XTrace\Trace $trace
+     * @return \Vuzonp\XTrace\Trace
      */
     public function add(Trace $trace)
     {
@@ -49,7 +49,7 @@ class TraceList implements \Iterator, \Countable
 
     /**
      * Returns the current trace.
-     * @return \vuzonp\XTracer\Trace
+     * @return \Vuzonp\XTrace\Trace
      */
     public function current()
     {
